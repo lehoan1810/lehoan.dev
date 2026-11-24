@@ -115,7 +115,8 @@ Dự án chạy được trên bất kỳ host nào hỗ trợ Next.js. Đơn gi
 
 ## SEO
 
-- **Metadata API** trong `layout.tsx`: title template, description, canonical, Open Graph, Twitter card, robots (`max-image-preview: large`), keywords.
+- **Metadata API** trong `layout.tsx`: title template, description, canonical, Open Graph, Twitter card, keywords.
+- **Đang tắt index** (`noindex, nofollow`). Muốn site lên Google thì đổi `allowIndexing` thành `true` trong `src/data/site.ts`.
 - **File-convention metadata**, tất cả prerender lúc build:
   - `opengraph-image.tsx`: ảnh 1200×630 dùng font Be Vietnam Pro, hiển thị đúng dấu tiếng Việt.
   - `icon.svg`, `apple-icon.tsx`, `manifest.ts`, `robots.ts`, `sitemap.ts`.
@@ -127,6 +128,8 @@ Dự án chạy được trên bất kỳ host nào hỗ trợ Next.js. Đơn gi
   - Mọi panel dự án đều có sẵn trong HTML (panel không active dùng `hidden`), nên Google index được hết.
 
 ## Performance & caching
+
+Chi tiết từng kỹ thuật, cách áp dụng cho dự án khác và phần tự đánh giá nằm ở [`docs/performance.md`](docs/performance.md).
 
 **Render.** Bật `cacheComponents` nên toàn bộ trang prerender thành static shell (`○ /` trong output build, revalidate 1 ngày). CDN phục vụ thẳng HTML.
 
