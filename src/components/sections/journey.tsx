@@ -83,17 +83,20 @@ function Milestone({ item }: { item: JourneyItem }) {
     <li className="line-t grid lg:grid-cols-[260px_minmax(0,1fr)]">
       <div className="relative px-5 pt-10 sm:px-10 lg:border-r lg:border-border lg:px-8 lg:pb-12">
         <TimelineDot current={item.current} />
-        <p
-          className={cn(
-            "font-display text-4xl font-semibold tracking-tighter whitespace-nowrap lg:sticky lg:top-24",
-            item.current ? "text-brand-display" : "text-foreground",
-          )}
-        >
-          {item.year}
-        </p>
-        {item.period ? (
-          <p className="mt-2 font-mono text-xs text-muted lg:sticky lg:top-36">{item.period}</p>
-        ) : null}
+        {/* One sticky block, so version and period never slide over each other. */}
+        <div className="lg:sticky lg:top-24">
+          <p
+            className={cn(
+              "font-display text-4xl font-semibold tracking-tighter whitespace-nowrap",
+              item.current ? "text-brand-display" : "text-foreground",
+            )}
+          >
+            {item.year}
+          </p>
+          {item.period ? (
+            <p className="mt-2 font-mono text-xs text-muted">{item.period}</p>
+          ) : null}
+        </div>
       </div>
 
       <div
