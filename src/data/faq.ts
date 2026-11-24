@@ -1,39 +1,38 @@
 import type { FaqItem } from "@/types";
 
 export const faqSection = {
-  id: "hoi-nhanh",
-  eyebrow: "Hỏi nhanh",
-  title: "Một vài câu các bạn hay hỏi mình",
-  description:
-    "Nếu không thấy câu hỏi của bạn ở đây thì cứ để lại bình luận dưới video hoặc nhắn mình trên TikTok nhé.",
+  id: "hoi-dap",
+  eyebrow: "Hỏi đáp",
+  title: "Vài câu hỏi hay gặp",
+  description: "Nếu bạn đang cân nhắc làm việc cùng mình, có lẽ đây là những điều bạn muốn biết.",
 };
 
 export const faqs: FaqItem[] = [
   {
-    question: "Evondev còn bán khóa học không?",
+    question: "Bạn mạnh nhất ở phần nào?",
     answer:
-      "Hiện tại mình đã ngừng bán tất cả các khóa học cũ rồi nhé. Mình đang chuẩn bị mấy khóa mới phù hợp hơn với thời AI, khi nào có lịch ra mắt thì mình báo trên kênh YouTube đầu tiên.",
+      "Frontend: dựng giao diện đúng thiết kế, responsive, dễ truy cập và tối ưu hiệu năng, SEO với React và Next.js. Chính trang này là một ví dụ: prerender tĩnh, dữ liệu GitHub được cache và JavaScript gửi xuống trình duyệt ở mức tối thiểu.",
   },
   {
-    question: "evondevKit UI/UX là gì?",
+    question: "Vì sao bạn chuyển sang Fullstack?",
     answer:
-      "Đây là bộ skill cho coding agent mà mình viết, dùng được với Claude Code, Cursor, Codex, OpenCode, Antigravity và ZCode. Skill đầu tiên là evon:ui-ux, giúp agent làm UI app theo cách một designer làm: đưa brief và 2–3 wireframe cho các bạn chọn rồi mới dựng. Bộ này miễn phí và mã nguồn mở.",
+      "Để hiểu trọn luồng dữ liệu của sản phẩm, từ database tới giao diện. Nhờ vậy mình phối hợp với backend tốt hơn và có thể tự làm một sản phẩm hoàn chỉnh.",
   },
   {
-    question: "Teach Template có mất phí không?",
+    question: "Bạn làm việc với AI như thế nào?",
     answer:
-      "Không mất phí đâu các bạn. Trên trang Teach Template mình có giải thích chi tiết bộ này gồm những gì và cách cài cho từng tool, các bạn vào xem rồi nhận file ở đó nhé.",
+      "AI viết code, mình chịu trách nhiệm 🤖. Mình dùng AI để tăng tốc những phần lặp lại, còn kiến trúc, review và chất lượng cuối cùng vẫn là việc của mình.",
   },
   {
-    question: "Personal Tracker cài ở đâu?",
-    answer:
-      "Các bạn vào trang Personal Tracker trên speaknowenglish.org nhé, ở đó mình có giải thích từng widget và cách cài. Extension này miễn phí, nhận file qua email.",
+    question: "Liên hệ với bạn bằng cách nào?",
+    answer: "Nhắn cho mình qua GitHub hoặc các kênh ở cuối trang, mình sẽ phản hồi sớm nhất có thể.",
   },
 ];
 
 export const ctaSection = {
-  eyebrow: "Theo dõi",
-  title: "Cảm ơn bạn đã lăn chuột tới dưới này nha",
+  id: "lien-he",
+  eyebrow: "Liên hệ",
+  title: "Cùng build gì đó nhé?",
   description:
-    "Nếu thấy mấy thứ mình chia sẻ có ích thì các bạn theo dõi mình trên YouTube, TikTok hoặc ghé blog đọc bài nhé. Có gì mới là mình đăng ở đó đầu tiên.",
+    "Mình luôn sẵn lòng trao đổi về frontend, Next.js hay hành trình học fullstack. Một lời chào cũng được.",
 };

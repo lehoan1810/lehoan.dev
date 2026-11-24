@@ -1,13 +1,20 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowDownRight, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { BrandIcon, brandPaths } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/button";
 import { CodeWindow } from "@/components/ui/code-window";
 import { Magnetic } from "@/components/ui/magnetic";
 import { MediaPlaceholder } from "@/components/ui/media-frame";
-import { heroCode, heroDescription, heroHeading, heroPhoto, type CodeTone } from "@/data/hero";
+import {
+  heroCode,
+  heroDescription,
+  heroGreeting,
+  heroHeading,
+  heroPhoto,
+  type CodeTone,
+} from "@/data/hero";
 import { announcement, socials, tagline } from "@/data/site";
 import { motionTimings } from "@/lib/motion";
-import { cn } from "@/lib/utils";
 
 /** Tiny mono caption above a block, mimicking a design-inspector label. */
 function SpecLabel({ children }: { children: string }) {
@@ -18,26 +25,15 @@ function SpecLabel({ children }: { children: string }) {
   );
 }
 
-function BlurHeading() {
-  const lead = heroHeading.lead.split(" ");
-  const highlight = heroHeading.highlight.split(" ");
-  const words = [
-    ...lead.map((w) => ({ w, brand: false })),
-    ...highlight.map((w) => ({ w, brand: true })),
-  ];
-
+/** Static text (it is the LCP element) closed by a blinking caret, like a terminal prompt. */
+function HeroHeading() {
   return (
     <h1 className="line-t line-b py-1.5 font-display text-[2.5rem] leading-[1.1] font-semibold tracking-tighter text-balance text-foreground sm:text-6xl lg:text-7xl">
-      {words.map(({ w, brand }, i) => (
-        <span key={i}>
-          <span
-            className={cn("inline-block motion-safe:animate-blur-in", brand && "text-brand-display")}
-            style={{ animationDelay: `${i * motionTimings.blurWordDelayMs}ms` }}
-          >
-            {w}
-          </span>{" "}
-        </span>
-      ))}
+      {heroHeading.lead} <span className="text-brand-display">{heroHeading.highlight}</span>
+      <span
+        aria-hidden
+        className="ml-1 inline-block h-[0.85em] w-[0.08em] translate-y-[0.1em] bg-brand motion-safe:animate-caret"
+      />
     </h1>
   );
 }
@@ -88,8 +84,6 @@ export function Hero() {
       <div className="px-5 pt-14 pb-16 sm:px-10 md:pt-20 md:pb-20">
         <a
           href={announcement.href}
-          target="_blank"
-          rel="noreferrer"
           className="inline-flex items-center gap-2 rounded-full bg-background px-3 py-1 text-sm text-foreground ring-1 ring-border-card transition-colors hover:bg-surface motion-safe:animate-hero-rise"
         >
           <span className="font-semibold text-brand-ink">{announcement.label}</span>
@@ -99,8 +93,9 @@ export function Hero() {
         </a>
 
         <div className="mt-10">
+          <p className="mb-4 font-mono text-sm text-muted motion-safe:animate-hero-rise">{heroGreeting}</p>
           <SpecLabel>h1 · text-7xl font-semibold tracking-tighter text-balance</SpecLabel>
-          <BlurHeading />
+          <HeroHeading />
         </div>
 
         <div className="mt-8 motion-safe:animate-hero-rise motion-safe:[animation-delay:500ms]">
@@ -114,12 +109,14 @@ export function Hero() {
           <SpecLabel>div · flex gap-3</SpecLabel>
           <div className="line-t line-b flex flex-col gap-3 py-3 sm:flex-row sm:items-center">
             <Magnetic className="w-full sm:w-auto">
-              <ButtonLink href={socials.youtube} className="w-full">
-                Theo dõi kênh YouTube
+              <ButtonLink href="#du-an" className="w-full">
+                Xem dự án
+                <ArrowDownRight aria-hidden className="size-4" />
               </ButtonLink>
             </Magnetic>
-            <ButtonLink href="#hanh-trinh" variant="secondary">
-              Xem hành trình của mình
+            <ButtonLink href={socials.github} variant="secondary">
+              <BrandIcon path={brandPaths.github} className="size-4" />
+              GitHub
             </ButtonLink>
             <p className="font-mono text-xs text-muted sm:ml-3">{tagline}</p>
           </div>

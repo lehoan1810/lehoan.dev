@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/data/site";
+import { splitDomain } from "@/lib/utils";
 
 /**
  * Generated at build time (static metadata route) and served as /opengraph-image.png
@@ -20,6 +21,7 @@ const fonts = Promise.all([
 
 export default async function OpengraphImage() {
   const [regular, semibold] = await fonts;
+  const [brand, tld] = splitDomain(siteConfig.name);
 
   return new ImageResponse(
     (
@@ -40,16 +42,16 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", fontSize: 40, fontWeight: 600, letterSpacing: -1 }}>
-          evon<span style={{ color: "#9ca3af" }}>.dev</span>
+          {brand}<span style={{ color: "#9ca3af" }}>{tld}</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ display: "flex", fontSize: 68, fontWeight: 600, lineHeight: 1.1, letterSpacing: -2.5 }}>
-            Xin chào, mình là Tuấn
+            Xin chào, mình là Hoàn
           </div>
           <div style={{ display: "flex", fontSize: 68, fontWeight: 600, lineHeight: 1.1, letterSpacing: -2.5, color: "#fa5d19" }}>
-            evondev · Frontend Developer
+            Frontend → Fullstack
           </div>
-          <div style={{ display: "flex", fontSize: 30, color: "#d1d5db", maxWidth: 900 }}>
+          <div style={{ display: "flex", fontSize: 28, color: "#d1d5db", maxWidth: 1040 }}>
             {siteConfig.shortDescription}
           </div>
         </div>

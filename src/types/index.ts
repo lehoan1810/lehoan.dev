@@ -10,13 +10,6 @@ export type LinkItem = {
   href: string;
 };
 
-export type Stat = {
-  value: string;
-  label: string;
-  handle: string;
-  href: string;
-};
-
 export type TechItem = {
   name: string;
   path: string;
@@ -33,25 +26,25 @@ export type Media = {
   position?: string;
 };
 
+export type ChecklistState = "done" | "doing" | "next";
+
 export type JourneyItem = {
+  /** Big label in the left column, e.g. a version number. */
   year: string;
+  /** Small line under `year`, e.g. the time span. */
+  period?: string;
   title: string;
   description: string;
   links?: LinkItem[];
-  media: Media[];
+  /** Progress list, shown for the in-progress milestone. */
+  checklist?: { label: string; state: ChecklistState }[];
+  /** Optional screenshots; the media column hides when empty. */
+  media?: Media[];
   /** Highlights the milestone as the current one (brand dot + ping). */
   current?: boolean;
 };
 
-export type Course = {
-  title: string;
-  description: string;
-  students: string;
-  lessons: number;
-  image: Media;
-};
-
-export type ProductStatus = "new" | "free" | "live" | "soon";
+export type ProductStatus = "new" | "free" | "live" | "soon" | "oss";
 
 export type Product = {
   id: string;
@@ -67,28 +60,11 @@ export type Product = {
   cta: LinkItem;
 };
 
-export type VSCodeItem = {
-  type: "Theme" | "Extension";
-  name: string;
-  description: string;
-  installs: string;
-  rating: string;
-  href: string;
-  image: Media;
-};
-
 export type Hobby = {
   icon: "play" | "pen" | "languages" | "badminton" | "code";
   title: string;
   description: string;
   link?: LinkItem;
-};
-
-export type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
-  avatar?: string;
 };
 
 export type FaqItem = {

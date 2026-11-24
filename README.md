@@ -18,7 +18,6 @@ src/
 │   ├── page.tsx          # ghép các section + JSON-LD
 │   ├── opengraph-image.tsx, apple-icon.tsx, icon.svg   # ảnh OG/icon sinh lúc build
 │   ├── robots.ts, sitemap.ts, manifest.ts              # metadata routes
-│   ├── api/revalidate/   # webhook xoá cache theo tag
 │   └── globals.css       # design tokens (light/dark), animation, custom utilities
 ├── components/
 │   ├── layout/           # SiteHeader, SiteFooter, PageFrame, ThemeToggle, ClickSpark
@@ -28,7 +27,6 @@ src/
 ├── data/                 # TOÀN BỘ nội dung text/số liệu, tách khỏi UI
 ├── hooks/                # useInView, usePrefersReducedMotion
 ├── lib/
-│   ├── queries/          # data layer có cache ("use cache" + cacheLife + cacheTag)
 │   ├── seo/              # JSON-LD (schema.org)
 │   ├── site-url.ts       # URL tuyệt đối cho canonical/OG/sitemap
 │   └── utils.ts, cx.ts   # cn() (server, có tailwind-merge) / cx() (client, nhẹ)
@@ -38,7 +36,7 @@ src/
 **Nguyên tắc**
 
 - **Nội dung ở `src/data`, giao diện ở `src/components`.** Sửa text, số liệu hay link thì chỉ cần đụng vào `data/`.
-- **Mặc định là Server Component.** Chỉ những chỗ cần tương tác mới có `"use client"`: tabs sản phẩm, scroll marquee, theme toggle, count-up, magnetic, spotlight, click-spark, nút copy.
+- **Mặc định là Server Component.** Chỉ những chỗ cần tương tác mới có `"use client"`: tabs dự án, scroll marquee, theme toggle, magnetic, spotlight, click-spark, nút copy.
 - **Màu sắc đi qua token.** Token khai báo trong `globals.css` (`--brand`, `--muted`, `--surface`, …) rồi map sang class Tailwind (`text-brand`, `bg-surface`, …). Dark mode chỉ override token dưới `[data-theme="dark"]`.
 - **Animation tôn trọng `prefers-reduced-motion`.** Mọi hiệu ứng đều dùng `motion-safe:` hoặc kiểm tra bằng hook.
 
@@ -60,8 +58,6 @@ Copy `.env.example` thành `.env.local`:
 | Biến | Bắt buộc | Dùng cho |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Có, khi deploy | Domain thật, dùng cho canonical, OG, sitemap, JSON-LD. Trên Vercel tự lấy từ `VERCEL_PROJECT_PRODUCTION_URL`. |
-| `YOUTUBE_API_KEY`, `YOUTUBE_CHANNEL_ID` | Không | Số subscriber/video thật. Thiếu thì dùng số liệu tĩnh trong `src/data/site.ts`. |
-| `REVALIDATE_SECRET` | Không | Bảo vệ `POST /api/revalidate`. |
 
 ## SEO
 
@@ -74,27 +70,14 @@ Copy `.env.example` thành `.env.local`:
   - Có đúng một `h1`.
   - Mỗi section có `aria-labelledby` trỏ tới `h2` của nó.
   - Có skip link tới `#noi-dung`.
-  - Cả 4 panel sản phẩm đều có sẵn trong HTML (panel không active dùng `hidden`), nên Google index được hết.
+  - Mọi panel dự án đều có sẵn trong HTML (panel không active dùng `hidden`), nên Google index được hết.
 - Khi đổi nội dung trang, cập nhật `CONTENT_UPDATED_AT` trong `sitemap.ts`.
 
 ## Performance & caching
 
 **Render.** Bật `cacheComponents` nên toàn bộ trang prerender thành static shell (`○` trong output build), và CDN phục vụ thẳng HTML.
 
-**Data cache.** Các hàm trong `src/lib/queries/` dùng `"use cache"`:
-
-| Hàm | Nguồn | `cacheLife` | Tag |
-| --- | --- | --- | --- |
-| `getStats()` | YouTube Data API | `hours`; `days` khi không có API key; `minutes` khi lỗi (fallback số tĩnh) | `stats` |
-| `getVSCodeData()` | VS Code Marketplace API | `days`; `minutes` khi lỗi | `vscode` |
-
-Trang tự nhận mức revalidate ngắn nhất của dữ liệu bên trong (hiện là 1 ngày). Muốn xoá cache ngay lập tức:
-
-```bash
-curl -X POST "https://your-domain/api/revalidate?tag=stats" -H "Authorization: Bearer $REVALIDATE_SECRET"
-```
-
-Route này gọi `revalidateTag(tag, "max")`, nghĩa là stale-while-revalidate: người dùng vẫn nhận bản cũ ngay, còn bản mới được render ở nền.
+**Data.** Trang không gọi API bên ngoài: toàn bộ nội dung nằm trong `src/data`, nên trang là HTML tĩnh hoàn toàn. Khi cần dữ liệu động (ví dụ GitHub API), đặt hàm fetch trong `src/lib/queries/` với `"use cache"` + `cacheLife` + `cacheTag`, giống cách làm ở nhánh `feat/personal-redesign`.
 
 **Bundle client.**
 - Server Component là mặc định. Icon và nội dung panel render trên server rồi truyền vào client island qua `children`/props.

@@ -13,6 +13,7 @@ const statusClass: Record<ProductStatus, string> = {
   free: "bg-brand/5 text-brand-ink ring-brand/30",
   live: "text-muted ring-border-card",
   soon: "text-muted ring-border-card",
+  oss: "bg-brand/5 text-brand-ink ring-brand/30",
 };
 
 /** Tab label; selected styles come from the parent button's aria-selected state. */
@@ -95,7 +96,7 @@ export function Products() {
     <Section id={productsSection.id} labelled>
       <SectionHeader {...productsSection} />
       <ProductTabs
-        label="Sản phẩm"
+        label="Dự án"
         items={products.map((product, i) => ({
           id: product.id,
           tab: <ProductTab product={product} index={i} />,

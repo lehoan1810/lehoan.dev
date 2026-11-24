@@ -18,7 +18,7 @@ export function homeJsonLd() {
         description: siteConfig.description,
         url: siteUrl,
         image: absoluteUrl("/opengraph-image"),
-        sameAs: [socials.youtube, socials.tiktok, socials.blog],
+        sameAs: [socials.github, socials.linkedin].filter(Boolean),
         knowsAbout: siteConfig.knowsAbout,
       },
       {

@@ -4,13 +4,15 @@ export type CodeTone = "accent" | "key" | "punctuation" | "string" | "number";
 export type CodeToken = { text: string; tone: CodeTone };
 export type CodeLine = { indent: number; tokens: CodeToken[] };
 
+export const heroGreeting = "Xin chào, mình là Hoàn.";
+
 export const heroHeading = {
-  lead: "Xin chào, mình là Tuấn,",
-  highlight: "mọi người hay gọi mình là evondev.",
+  lead: "Frontend developer,",
+  highlight: "đang build dần thành Fullstack",
 };
 
 export const heroDescription =
-  "Mình làm Frontend từ năm 2016, bắt đầu từ cắt HTML CSS rồi tới JavaScript, React và Next.js. Ngoài giờ code thì mình thích viết blog, làm video YouTube và đang tập nói tiếng Anh mỗi ngày. Mấy năm trước mình làm khá nhiều khóa học lập trình, còn bây giờ thì mình dành thời gian để làm các công cụ giúp code cùng AI cho hiệu quả hơn.";
+  "Mình làm giao diện web với React, Next.js và TypeScript, từng tham gia các sản phẩm như Preny.ai và Askany. Hiện tại mình học thêm backend để tự làm trọn một sản phẩm: từ giao diện tới API và database.";
 
 export const heroPhoto = {
   // Preferred: `import photo from "@/assets/images/hero.jpg"` then `src: photo`
@@ -29,28 +31,28 @@ const list = (items: string[]) =>
   items.flatMap((item, i) => (i === 0 ? [s(item)] : [p(", "), s(item)]));
 
 export const heroCode = {
-  filename: "evondev.ts",
+  filename: "lehoan.ts",
   lines: [
-    { indent: 0, tokens: [{ text: "const ", tone: "accent" }, k("evondev"), p(" = {")] },
-    { indent: 1, tokens: [k("name"), p(": "), s("Trần Anh Tuấn"), p(",")] },
-    { indent: 1, tokens: [k("nickname"), p(": "), s("evondev"), p(",")] },
+    { indent: 0, tokens: [{ text: "const ", tone: "accent" }, k("lehoan"), p(" = {")] },
+    { indent: 1, tokens: [k("name"), p(": "), s("Lê Hoàn"), p(",")] },
+    { indent: 1, tokens: [k("github"), p(": "), s("lehoan1810"), p(",")] },
     { indent: 1, tokens: [k("role"), p(": "), s("Frontend Developer"), p(",")] },
-    { indent: 1, tokens: [k("since"), p(": "), n("2016"), p(",")] },
+    { indent: 1, tokens: [k("since"), p(": "), n("2020"), p(",")] },
     {
       indent: 1,
       tokens: [k("stack"), p(": ["), ...list(["React", "Next.js", "TypeScript"]), p("],")],
     },
+    { indent: 1, tokens: [k("products"), p(": ["), ...list(["Preny.ai", "Askany"]), p("],")] },
     {
       indent: 1,
       tokens: [
-        k("loves"),
+        k("learning"),
         p(": ["),
-        ...list(["YouTube", "Blog", "English", "Badminton", "Family"]),
+        ...list(["Node.js", "PostgreSQL", "Prisma", "Docker"]),
         p("],"),
       ],
     },
-    { indent: 1, tokens: [k("family"), p(": "), s("Wife and son"), p(",")] },
-    { indent: 1, tokens: [k("building"), p(": "), s("evondevKit UI/UX"), p(",")] },
+    { indent: 1, tokens: [k("next"), p(": "), s("Fullstack"), p(",")] },
     { indent: 0, tokens: [p("};")] },
   ] satisfies CodeLine[],
 };
