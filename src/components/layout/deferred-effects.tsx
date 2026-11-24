@@ -3,11 +3,8 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-// Purely decorative effects: split into their own chunks and loaded only once
-// the browser is idle, so they never compete with hydration or the LCP.
-const ClickSpark = dynamic(() => import("./click-spark").then((m) => m.ClickSpark), {
-  ssr: false,
-});
+// Purely decorative effect: split into its own chunk and loaded only once
+// the browser is idle, so it never competes with hydration or the LCP.
 const SpotlightTracker = dynamic(
   () => import("./spotlight-tracker").then((m) => m.SpotlightTracker),
   { ssr: false },
@@ -26,10 +23,5 @@ export function DeferredEffects() {
   }, []);
 
   if (!idle) return null;
-  return (
-    <>
-      <SpotlightTracker />
-      <ClickSpark />
-    </>
-  );
+  return <SpotlightTracker />;
 }

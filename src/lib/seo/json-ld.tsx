@@ -1,4 +1,5 @@
 import { faqs } from "@/data/faq";
+import { projects } from "@/data/projects";
 import { siteConfig, socials } from "@/data/site";
 import { absoluteUrl, siteUrl } from "@/lib/site-url";
 
@@ -18,8 +19,16 @@ export function homeJsonLd() {
         description: siteConfig.description,
         url: siteUrl,
         image: absoluteUrl("/opengraph-image"),
-        sameAs: [socials.youtube, socials.tiktok, socials.blog],
+        sameAs: [socials.github, socials.linkedin].filter(Boolean),
         knowsAbout: siteConfig.knowsAbout,
+        // Products worked on (public info only).
+        subjectOf: projects.map((project) => ({
+          "@type": "WebApplication",
+          name: project.name,
+          url: project.url,
+          applicationCategory: project.kind,
+          description: project.tagline,
+        })),
       },
       {
         "@type": "WebSite",

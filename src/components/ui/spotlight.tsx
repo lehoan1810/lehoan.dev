@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -9,9 +9,21 @@ import { cn } from "@/lib/utils";
  * `[data-spotlight]` element is under the pointer, instead of hydrating one
  * client component per card.
  */
-export function Spotlight({ children, className }: { children: ReactNode; className?: string }) {
+export function Spotlight({
+  children,
+  className,
+  style,
+}: {
+  children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+}) {
   return (
-    <div data-spotlight className={cn("group/spot relative isolate overflow-hidden", className)}>
+    <div
+      data-spotlight
+      style={style}
+      className={cn("group/spot relative isolate overflow-hidden", className)}
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(420px_circle_at_var(--spot-x,50%)_var(--spot-y,50%),rgb(250_93_25/0.09),transparent_65%)] opacity-0 transition-opacity duration-500 group-hover/spot:opacity-100"

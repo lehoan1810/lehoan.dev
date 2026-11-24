@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import { DeferredEffects } from "@/components/layout/deferred-effects";
-import { PageFrame } from "@/components/layout/page-frame";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { siteConfig } from "@/data/site";
@@ -90,10 +89,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Bỏ qua tới nội dung chính
         </a>
         <SiteHeader />
-        <PageFrame>
-          <main id="noi-dung">{children}</main>
-          <SiteFooter />
-        </PageFrame>
+        <main id="noi-dung" className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          {children}
+        </main>
+        <SiteFooter />
         <DeferredEffects />
       </body>
     </html>

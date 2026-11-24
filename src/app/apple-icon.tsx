@@ -19,9 +19,10 @@ export default function AppleIcon() {
           fontSize: 120,
           fontWeight: 700,
           letterSpacing: -6,
+          paddingBottom: 12,
         }}
       >
-        e
+        h
       </div>
     ),
     size,

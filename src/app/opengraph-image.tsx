@@ -4,8 +4,7 @@ import { ImageResponse } from "next/og";
 import { siteConfig } from "@/data/site";
 
 /**
- * Generated at build time (static metadata route) and served as /opengraph-image.png
- * with an immutable, content-hashed URL. Twitter falls back to og:image automatically.
+ * Generated at build time (static metadata route) and served as /opengraph-image. Twitter falls back to og:image automatically.
  */
 export const alt = `${siteConfig.author} (${siteConfig.alternateName}) · ${siteConfig.jobTitle}`;
 export const size = { width: 1200, height: 630 };
@@ -40,16 +39,17 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", fontSize: 40, fontWeight: 600, letterSpacing: -1 }}>
-          evon<span style={{ color: "#9ca3af" }}>.dev</span>
+          {siteConfig.name.split(".")[0]}
+          <span style={{ color: "#9ca3af" }}>.{siteConfig.name.split(".")[1]}</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ display: "flex", fontSize: 68, fontWeight: 600, lineHeight: 1.1, letterSpacing: -2.5 }}>
-            Xin chào, mình là Tuấn
+            Xin chào, mình là Hoàn
           </div>
           <div style={{ display: "flex", fontSize: 68, fontWeight: 600, lineHeight: 1.1, letterSpacing: -2.5, color: "#fa5d19" }}>
-            evondev · Frontend Developer
+            Frontend → Fullstack
           </div>
-          <div style={{ display: "flex", fontSize: 30, color: "#d1d5db", maxWidth: 900 }}>
+          <div style={{ display: "flex", fontSize: 28, color: "#d1d5db", maxWidth: 1040 }}>
             {siteConfig.shortDescription}
           </div>
         </div>

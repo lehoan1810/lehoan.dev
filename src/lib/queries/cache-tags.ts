@@ -1,7 +1,6 @@
 /** Cache tags used with cacheTag() / revalidateTag(). One place so they never drift. */
 export const cacheTags = {
-  stats: "stats",
-  vscode: "vscode",
+  github: "github",
 } as const;
 
 export type CacheTag = (typeof cacheTags)[keyof typeof cacheTags];

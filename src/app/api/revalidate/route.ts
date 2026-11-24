@@ -5,7 +5,7 @@ import { cacheTags, isCacheTag } from "@/lib/queries";
 /**
  * On-demand cache invalidation (e.g. from a cron job or webhook):
  *
- *   curl -X POST "$SITE/api/revalidate?tag=stats" -H "Authorization: Bearer $REVALIDATE_SECRET"
+ *   curl -X POST "$SITE/api/revalidate?tag=github" -H "Authorization: Bearer $REVALIDATE_SECRET"
  *
  * Uses the "max" profile: visitors keep getting the cached page while it
  * regenerates in the background (stale-while-revalidate).

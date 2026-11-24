@@ -1,34 +1,27 @@
-import { Courses } from "@/components/sections/courses";
-import { Cta } from "@/components/sections/cta";
+import { Changelog } from "@/components/sections/changelog";
+import { Contact } from "@/components/sections/contact";
 import { Faq } from "@/components/sections/faq";
+import { GitHubRepos } from "@/components/sections/github-repos";
 import { Hero } from "@/components/sections/hero";
-import { Hobbies } from "@/components/sections/hobbies";
-import { Journey } from "@/components/sections/journey";
-import { Products } from "@/components/sections/products";
-import { ScrollMarquee } from "@/components/sections/scroll-marquee-section";
-import { Stats } from "@/components/sections/stats";
-import { TechMarquee } from "@/components/sections/tech-marquee";
-import { Testimonials } from "@/components/sections/testimonials";
-import { VSCode } from "@/components/sections/vscode";
-import { scrollMarqueeRows } from "@/data/site";
+import { Projects } from "@/components/sections/projects";
+import { Stack } from "@/components/sections/stack";
 import { homeJsonLd, JsonLd } from "@/lib/seo/json-ld";
 
+/**
+ * Fully prerendered. The GitHub data is a `"use cache"` unit baked into the static
+ * shell and revalidated in the background (hourly, or on demand via the `github` tag).
+ */
 export default function HomePage() {
   return (
     <>
       <JsonLd data={homeJsonLd()} />
       <Hero />
-      <Stats />
-      <TechMarquee />
-      <Journey />
-      <Courses />
-      <Products />
-      <VSCode />
-      <ScrollMarquee rows={scrollMarqueeRows} />
-      <Hobbies />
-      <Testimonials />
+      <Projects />
+      <Changelog />
+      <GitHubRepos />
+      <Stack />
       <Faq />
-      <Cta />
+      <Contact />
     </>
   );
 }

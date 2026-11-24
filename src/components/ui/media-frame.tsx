@@ -31,7 +31,7 @@ export function MediaFrame({
 /** Placeholder shown when a Media item has no `src` yet. */
 export function MediaPlaceholder({ label }: { label: string }) {
   return (
-    <div className="bg-hatch absolute inset-0 grid place-items-center p-4 text-center">
+    <div className="bg-dots absolute inset-0 grid place-items-center p-4 text-center">
       <div className="flex flex-col items-center gap-2 text-faint">
         <ImageIcon aria-hidden className="size-6" />
         <span className="line-clamp-2 max-w-[28ch] font-mono text-[11px] leading-4">{label}</span>
