@@ -4,7 +4,7 @@ import { DeferredEffects } from "@/components/layout/deferred-effects";
 import { PageFrame } from "@/components/layout/page-frame";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { siteConfig } from "@/data/site";
+import { siteConfig, allowIndexing } from "@/data/site";
 import { siteUrl } from "@/lib/site-url";
 import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
@@ -49,17 +49,19 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: allowIndexing
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      }
+    : { index: false, follow: false, googleBot: { index: false, follow: false } },
   formatDetection: { telephone: false, email: false, address: false },
 };
 

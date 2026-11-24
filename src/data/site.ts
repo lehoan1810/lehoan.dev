@@ -2,6 +2,13 @@ import type { NavItem } from "@/types";
 
 export const githubUsername = "lehoan1810";
 
+/**
+ * false = noindex/nofollow on every page and no sitemap in robots.txt.
+ * Crawling stays allowed so search engines can actually read the noindex tag.
+ * Flip to true when the site is ready to show up in search results.
+ */
+export const allowIndexing = false;
+
 export const siteConfig = {
   name: "lehoan.dev",
   title: "Lê Hoàn · Frontend Developer",
