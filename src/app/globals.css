@@ -24,6 +24,7 @@
   --border: #0307120f;
   --border-card: #0307121a;
   --dot: #03071221;
+  --hatch: #0307120f;
   --frame: #03071206;
 
   --code-background: #0b0f19;
@@ -47,6 +48,7 @@
   --border: #ffffff14;
   --border-card: #ffffff1f;
   --dot: #ffffff1c;
+  --hatch: #ffffff12;
   --frame: #ffffff08;
   --code-background: #0b101c;
 }
@@ -113,6 +115,52 @@
 @utility bg-dots {
   background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-size: 18px 18px;
+}
+
+/*
+ * Blueprint frame: full-bleed 1px guide lines that run past the content column
+ * and across the hatched side rails (the frame's wrapper clips the overflow).
+ */
+@utility line-t {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    right: -100vw;
+    z-index: 1;
+    height: 1px;
+    background-color: var(--border);
+    pointer-events: none;
+  }
+}
+
+@utility line-b {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100vw;
+    right: -100vw;
+    z-index: 1;
+    height: 1px;
+    background-color: var(--border);
+    pointer-events: none;
+  }
+}
+
+/* Diagonal hatch used on the side rails. */
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(
+    315deg,
+    var(--hatch) 0,
+    var(--hatch) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
 }
 
 /* Scroll-driven reveal (progressive enhancement). */

@@ -8,7 +8,7 @@ import { socials } from "@/data/site";
 
 export function Contact() {
   return (
-    <Section id={contactSection.id} labelled className="pt-0">
+    <Section id={contactSection.id} labelled>
       <BentoCard className="reveal px-7 py-14 text-center sm:px-12 sm:py-20">
         <div
           aria-hidden

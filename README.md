@@ -25,6 +25,9 @@ Ngoài ra còn có:
 
 - **Command palette** (`⌘K` / `Ctrl K`). Tìm được cả khi gõ không dấu. Danh sách lệnh nằm ở `commandItems` trong `data/site.ts`.
 - **Đổi theme** với hiệu ứng vòng tròn lan ra từ nút bấm (View Transitions API).
+- **Khung kiểu blueprint** (`layout/page-frame.tsx`): cột nội dung có hai rail gạch chéo ở hai bên (từ `sm` trở lên). Các đường kẻ ngang 1px chạy tràn hết bề ngang màn hình: dưới header, đầu mỗi section, giữa các dòng eyebrow/tiêu đề/mô tả, và trên footer. Có ba utility trong `globals.css`:
+  - `line-t` / `line-b`: kẻ đường tràn viền ở cạnh trên/dưới. Hai class này set `position: relative`, nên không gắn thẳng lên phần tử `sticky`; gắn vào thẻ con bên trong.
+  - `bg-hatch`: nền gạch chéo, màu lấy từ token `--hatch`.
 
 ## Nội dung cần điền (TODO)
 
@@ -47,7 +50,7 @@ src/
 │   ├── api/revalidate/   # webhook xoá cache theo tag
 │   └── globals.css       # design tokens (light/dark), animation, custom utilities
 ├── components/
-│   ├── layout/           # SiteHeader, SiteFooter, ThemeToggle, CommandMenu(+Trigger), DeferredEffects
+│   ├── layout/           # PageFrame, SiteHeader, SiteFooter, ThemeToggle, CommandMenu(+Trigger), DeferredEffects
 │   ├── sections/         # mỗi section là một file
 │   ├── ui/               # primitives: Section/SectionHeader, BentoCard, BrowserFrame, Button, LocalTime, …
 │   └── icons/            # BrandIcon (Simple Icons) + path GitHub/LinkedIn
