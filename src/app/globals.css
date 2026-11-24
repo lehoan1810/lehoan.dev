@@ -1,26 +1,226 @@
 @import "tailwindcss";
 
+/* Dark mode is driven by [data-theme="dark"] on <html> (see ThemeToggle). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  --brand: #fa5d19;
+  --brand-hover: #e8500f;
+  --brand-foreground: #fff;
+  --brand-display: #fa5d19;
+  --brand-ink: #c2410c;
+
+  --background: #fff;
+  --background-hover: #0307120a;
+  --surface: #f9fafb;
+  --foreground: #030712;
+  --muted: #4b5563;
+  --faint: #9ca3af;
+  --border: #0307120f;
+  --border-card: #0307121a;
+  --hatch: #0307120f;
+  --frame: #03071206;
+
+  --code-background: #0b0f19;
+  --code-foreground: #e5e7eb;
+  --code-muted: #6b7280;
+  --code-accent: #ff8a4c;
+  --code-string: #a5d6ff;
+  --code-number: #ffd580;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --brand-ink: #ff8a4c;
+  --background: #030712;
+  --background-hover: #ffffff0f;
+  --surface: #0b101c;
+  --foreground: #f9fafb;
+  --muted: #9ca3af;
+  --faint: #4b5563;
+  --border: #ffffff14;
+  --border-card: #ffffff1f;
+  --hatch: #ffffff12;
+  --frame: #ffffff08;
+  --code-background: #0b101c;
 }
 
 @theme inline {
+  --font-sans: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-display: var(--brand-display);
+  --color-brand-ink: var(--brand-ink);
+
   --color-background: var(--background);
+  --color-background-hover: var(--background-hover);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-border: var(--border);
+  --color-border-card: var(--border-card);
+  --color-frame: var(--frame);
+
+  --color-code-background: var(--code-background);
+  --color-code-foreground: var(--code-foreground);
+  --color-code-muted: var(--code-muted);
+  --color-code-accent: var(--code-accent);
+  --color-code-string: var(--code-string);
+  --color-code-number: var(--code-number);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ------------------------------------------------------------------ */
+/* Animations                                                          */
+/* ------------------------------------------------------------------ */
+@theme {
+  --animate-hero-rise: hero-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-line-in: line-in 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-panel-in: panel-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-blur-in: blur-in 0.7s linear both;
+  --animate-shine: shine 4s linear infinite;
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes line-in {
+    from { opacity: 0; transform: translateX(-6px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes panel-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes blur-in {
+    0% { opacity: 0; filter: blur(10px); transform: translateY(-14px); }
+    50% { opacity: 0.5; filter: blur(5px); transform: translateY(3px); }
+    100% { opacity: 1; filter: blur(0); transform: none; }
+  }
+  @keyframes shine {
+    0% { background-position: 150% 0; }
+    60%, 100% { background-position: -50% 0; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Custom utilities                                                    */
+/* ------------------------------------------------------------------ */
+
+/* Full-bleed 1px guide lines that run past the content column. */
+@utility line-t {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    right: -100vw;
+    z-index: 1;
+    height: 1px;
+    background-color: var(--border);
+    pointer-events: none;
+  }
+}
+
+@utility line-b {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100vw;
+    right: -100vw;
+    z-index: 1;
+    height: 1px;
+    background-color: var(--border);
+    pointer-events: none;
+  }
+}
+
+/* Diagonal hatch used on the side rails. */
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(
+    315deg,
+    var(--hatch) 0,
+    var(--hatch) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(90deg, transparent, #000 10% 90%, transparent);
+}
+
+@utility text-shine {
+  background-image: linear-gradient(
+    110deg,
+    var(--foreground) 40%,
+    var(--brand) 50%,
+    var(--foreground) 60%
+  );
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Scroll-driven reveal (progressive enhancement). */
+@utility reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry entry 45%;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #fa5d1933;
+  }
 }
