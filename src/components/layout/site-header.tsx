@@ -1,4 +1,5 @@
 import { Moon, Sun } from "lucide-react";
+import { BrandIcon, brandPaths } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { mainNav, socials } from "@/data/site";
@@ -27,8 +28,9 @@ export function SiteHeader() {
             <Moon aria-hidden className="size-[18px] dark:hidden" />
             <Sun aria-hidden className="hidden size-[18px] dark:block" />
           </ThemeToggle>
-          <ButtonLink href={socials.youtube} size="sm">
-            Theo dõi kênh
+          <ButtonLink href={socials.github} size="sm">
+            <BrandIcon path={brandPaths.github} className="size-4" />
+            GitHub
           </ButtonLink>
         </div>
       </div>

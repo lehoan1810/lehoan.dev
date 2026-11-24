@@ -2,7 +2,7 @@
 
 Trang cá nhân của **Lê Hoàn**, frontend developer đang học dần để thành fullstack. Trang giới thiệu các sản phẩm mình đã tham gia (Preny.ai, Askany, Top Chuyên Gia) và Waterbus, một dự án open-source làm cùng bạn bè.
 
-Viết bằng **Next.js 16 (App Router)**, **React 19** và **Tailwind CSS v4**. Giao diện dựa trên [evon.dev](https://evon.dev): khung viền "blueprint" với các đường kẻ ngang chạy tràn màn hình.
+Viết bằng **Next.js 16 (App Router)**, **React 19** và **Tailwind CSS v4**. Giao diện theo kiểu khung viền "blueprint" với các đường kẻ ngang chạy tràn màn hình.
 
 ## Chạy dự án
 
@@ -36,15 +36,12 @@ Toàn bộ text và link nằm trong `src/data`, tách khỏi giao diện. Muố
 
 **Sau khi đổi nội dung:** cập nhật `CONTENT_UPDATED_AT` trong `src/app/sitemap.ts`.
 
-### Còn lại từ bản gốc
+### Việc cần làm
 
-Mấy chỗ dưới đây vẫn đang là nội dung của evon.dev, cần thay bằng nội dung của mình:
-
-- [ ] Phần Sở thích (`src/data/hobbies.ts`)
-- [ ] Chữ chạy ngang khi cuộn (`scrollMarqueeRows` trong `src/data/site.ts`)
-- [ ] Nút "Theo dõi kênh" trên header (`src/components/layout/site-header.tsx`)
-- [ ] Favicon chữ "e" (`src/app/icon.svg`, `src/app/apple-icon.tsx`)
-- [ ] Ảnh chụp sản phẩm và ảnh hero (xem mục Hình ảnh)
+- [ ] Viết lại phần Sở thích (`src/data/hobbies.ts`)
+- [ ] Viết lại chữ chạy ngang khi cuộn (`scrollMarqueeRows` trong `src/data/site.ts`)
+- [ ] Đổi favicon (`src/app/icon.svg`, `src/app/apple-icon.tsx`)
+- [ ] Thêm ảnh chụp sản phẩm và ảnh hero (xem mục Hình ảnh)
 
 ## Cấu trúc
 
@@ -156,7 +153,3 @@ Dự án chạy được trên bất kỳ host nào hỗ trợ Next.js. Đơn gi
 | --- | --- | --- | --- | --- | --- |
 | Trước tối ưu | 984 ms | 97 ms | 161.7 KB | 8.6 KB (1 request) | 95.3 KB |
 | Sau tối ưu | **528 ms** | **78 ms** | **156.2 KB** | 0 (inline) | **78.4 KB** |
-
-## Ghi công
-
-Bố cục và phong cách giao diện lấy cảm hứng từ [evon.dev](https://evon.dev). Ảnh của trang gốc không được copy. Phần nội dung gốc còn sót lại đang được thay dần (xem mục "Còn lại từ bản gốc").

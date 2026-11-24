@@ -34,10 +34,6 @@ export const socials = {
   // TODO: điền để hiện nút liên hệ tương ứng ở phần cuối trang (để trống thì tự ẩn).
   email: "",
   linkedin: "",
-  youtube: "https://www.youtube.com/@evondevfrontend",
-  youtubeVideos: "https://www.youtube.com/@evondevfrontend/videos",
-  tiktok: "https://www.tiktok.com/@evon.dev",
-  blog: "https://evondev.com",
 };
 
 export const announcement = {

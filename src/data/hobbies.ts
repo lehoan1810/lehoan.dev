@@ -1,5 +1,4 @@
 import type { Hobby } from "@/types";
-import { socials } from "./site";
 
 export const hobbiesSection = {
   id: "so-thich",
@@ -13,13 +12,11 @@ export const hobbies: Hobby[] = [
     icon: "play",
     title: "Làm YouTube",
     description: "Quay video về Frontend, AI và mấy sản phẩm mình tự làm.",
-    link: { label: "Xem kênh", href: socials.youtube },
   },
   {
     icon: "pen",
     title: "Viết blog",
     description: "Viết lại những gì mình học được, từ React cho tới LLM.",
-    link: { label: "Đọc blog", href: socials.blog },
   },
   {
     icon: "languages",

@@ -1,4 +1,4 @@
-export const THEME_STORAGE_KEY = "evondev-theme";
+export const THEME_STORAGE_KEY = "lehoan-theme";
 
 /**
  * Runs in <head> before first paint so a saved dark theme doesn't flash light.
